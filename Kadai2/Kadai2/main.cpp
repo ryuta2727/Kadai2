@@ -65,23 +65,44 @@ private:
 class Vehicle : public Object
 {
 public:
-	virtual void setSpeed()
+	virtual void setSpeed(float s)
 	{
-		speed += accel;
+		speed = s;
 		printf("speed = %f\n", speed);
+	}
+	virtual void setAccel(float a)
+	{
+		accel = a;
+		printf("accel = %f\n", accel);
 	}
 	void Update2()
 	{
-		Update(speed);
+		speed += accel;
+		Object::Update(speed);
 	}
 private:
-	float speed = 5.0f;
-	float accel = 1.0f;
+	float speed = 0;
+	float accel = 0;
 };
 class Car : public Vehicle
 {
-	void Speed()
+public:
+	void Update3()
 	{
-		setSpeed();
+		Vehicle::Update2();
 	}
 };
+int main()
+{
+
+	Car  car;
+	Vehicle vehicle;
+
+	car.setAccel(0.1f);
+
+	for (int i = 0; i < 100; i++)
+	{
+		car.Update3();
+	}
+
+}
