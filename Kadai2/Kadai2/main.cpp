@@ -75,7 +75,7 @@ public:
 		accel = a;
 		printf("accel = %f\n", accel);
 	}
-	void Update2()
+	virtual void Update()
 	{
 		speed += accel;
 		Object::Update(speed);
@@ -87,9 +87,9 @@ private:
 class Car : public Vehicle
 {
 public:
-	void Update3()
+	virtual void Update3()
 	{
-		Vehicle::Update2();
+		Vehicle::Update();
 	}
 };
 int main()
